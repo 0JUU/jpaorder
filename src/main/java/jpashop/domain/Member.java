@@ -2,10 +2,9 @@ package jpashop.domain;
 
 import net.bytebuddy.dynamic.loading.InjectionClassLoader;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Member {
@@ -19,6 +18,17 @@ public class Member {
     private String name;
     private String city;
     private String zipcode;
+
+    @OneToMany(mappedBy = "member")
+    private List<Order> orders = new ArrayList<>();
+
+    public Member getMember() {
+        return member;
+    }
+
+    public void setMember(Member member) {
+        this.member = member;
+    }
 
     public Long getId() {
         return id;
